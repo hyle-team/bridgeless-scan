@@ -33,4 +33,6 @@ ENV NODE_ENV production
 ## Learn more here: https://nextjs.org/telemetry
 #ENV NEXT_TELEMETRY_DISABLED 1
 
+COPY ./.env /app/.env
+
 CMD ["yarn", "start"]
