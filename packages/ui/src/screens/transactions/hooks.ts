@@ -1,11 +1,19 @@
 import * as R from 'ramda';
 import { useState, useEffect, useCallback } from 'react';
+
 import { convertMsgsToModels } from '@/components/msg/utils';
 import {
   useMessagesByTypesListenerSubscription,
   MessagesByTypesListenerSubscription,
-  useMessagesByTypesQuery,
+  useMessagesByTypesQuery, useTransactionsQuery,
 } from '@/graphql/types/general_types';
+
+import {
+  TransactionsListenerSubscription,
+  useTransactionsListenerSubscription,
+} from '@/graphql/types/general_types';
+
+
 import type { TransactionsState } from '@/screens/transactions/types';
 import { convertMsgType } from '@/utils/convert_msg_type';
 import { useRecoilValue } from 'recoil';
@@ -22,37 +30,57 @@ const uniqueAndSort = R.pipe(
   R.sort(R.descend((r) => r?.height))
 );
 
-const formatTransactions = (
-  data: MessagesByTypesListenerSubscription
-): TransactionsState['items'] => {
-  if (!data?.messagesByTypes) return [];
+// const formatTransactions = (
+//   data: MessagesByTypesListenerSubscription
+// ): TransactionsState['items'] => {
+//   if (!data?.messagesByTypes) return [];
+//
+//   let formattedData = data.messagesByTypes;
+//   if (data.messagesByTypes.length === 51) {
+//     formattedData = data.messagesByTypes.slice(0, 51);
+//   }
+//
+//   return formattedData.map((x) => {
+//     const messages = convertMsgsToModels(x.transaction);
+//     const msgType =
+//       x.transaction?.messages?.map((eachMsg: any) => {
+//         const eachMsgType = R.pathOr('none type', ['@type'], eachMsg);
+//         return eachMsgType ?? '';
+//       }) ?? [];
+//     const convertedMsgType = convertMsgType(msgType);
+//     return {
+//       height: x.transaction?.height ?? 0,
+//       hash: x.transaction?.hash ?? '',
+//       type: convertedMsgType,
+//       messages: {
+//         count: x.transaction?.messages?.length ?? 0,
+//         items: messages,
+//       },
+//       success: x.transaction?.success ?? false,
+//       timestamp: x.transaction?.block?.timestamp ?? '',
+//     };
+//   });
+// };
 
-  let formattedData = data.messagesByTypes;
-  if (data.messagesByTypes.length === 51) {
-    formattedData = data.messagesByTypes.slice(0, 51);
-  }
+const formatTransactions = (data: TransactionsListenerSubscription) =>
+    data.transactions?.map((x) => {
+      const msgType =
+          x.messages?.map((eachMsg: object) => {
+            const eachMsgType = R.pathOr('none type', ['@type'], eachMsg);
+            return eachMsgType ?? '';
+          }) ?? [];
+      const convertedMsgType = convertMsgType(msgType);
 
-  return formattedData.map((x) => {
-    const messages = convertMsgsToModels(x.transaction);
-    const msgType =
-      x.transaction?.messages?.map((eachMsg: any) => {
-        const eachMsgType = R.pathOr('none type', ['@type'], eachMsg);
-        return eachMsgType ?? '';
-      }) ?? [];
-    const convertedMsgType = convertMsgType(msgType);
-    return {
-      height: x.transaction?.height ?? 0,
-      hash: x.transaction?.hash ?? '',
-      type: convertedMsgType,
-      messages: {
-        count: x.transaction?.messages?.length ?? 0,
-        items: messages,
-      },
-      success: x.transaction?.success ?? false,
-      timestamp: x.transaction?.block?.timestamp ?? '',
-    };
-  });
-};
+      return {
+        height: x.height,
+        hash: x.hash,
+        type: convertedMsgType,
+        success: x.success,
+        timestamp: x.block.timestamp,
+        messages: x.messages.length,
+      };
+    }) ?? [];
+
 
 export const useTransactions = () => {
   const [state, setState] = useState<TransactionsState>({
@@ -86,10 +114,7 @@ export const useTransactions = () => {
   // ================================
   // tx subscription
   // ================================
-  useMessagesByTypesListenerSubscription({
-    variables: {
-      types: msgTypes ?? '{}',
-    },
+  useTransactionsListenerSubscription({
     onData: (data) => {
       const newItems = uniqueAndSort([
         ...(data?.data?.data ? formatTransactions(data.data.data) : []),
@@ -103,31 +128,73 @@ export const useTransactions = () => {
     },
   });
 
-  // ================================
-  // tx query
-  // ================================
   const LIMIT = 51;
-  const transactionQuery = useMessagesByTypesQuery({
-    variables: {
-      limit: LIMIT,
-      offset: 1,
-      types: msgTypes ?? '{}',
-    },
-    onError: () => {
-      handleSetState((prevState) => ({ ...prevState, loading: false }));
-    },
-    onCompleted: (data) => {
-      const itemsLength = data.messagesByTypes.length;
-      const newItems = uniqueAndSort([...state.items, ...(formatTransactions(data) ?? [])]);
-      handleSetState((prevState) => ({
-        ...prevState,
-        loading: false,
-        items: newItems,
-        hasNextPage: itemsLength === 51,
-        isNextPageLoading: false,
-      }));
-    },
-  });
+  const transactionQuery =useTransactionsQuery(
+      {
+        variables: {
+          limit: LIMIT,
+          offset: 1,
+        },
+        onError: () => {
+          handleSetState((prevState) => ({ ...prevState, loading: false }));
+        },
+
+        onCompleted: (data) => {
+          const itemsLength = data.messagesByTypes.length;
+          const newItems = uniqueAndSort([...state.items, ...(formatTransactions(data) ?? [])]);
+          handleSetState((prevState) => ({
+            ...prevState,
+            loading: false,
+            items: newItems,
+            hasNextPage: itemsLength === 51,
+            isNextPageLoading: false,
+          }));
+        },
+      }
+  )
+
+  // useMessagesByTypesListenerSubscription({
+  //   variables: {
+  //     types: msgTypes ?? '{}',
+  //   },
+  //   onData: (data) => {
+  //     const newItems = uniqueAndSort([
+  //       ...(data?.data?.data ? formatTransactions(data.data.data) : []),
+  //       ...state.items,
+  //     ]);
+  //     handleSetState((prevState) => ({
+  //       ...prevState,
+  //       loading: false,
+  //       items: newItems,
+  //     }));
+  //   },
+  // });
+  //
+  // // ================================
+  // // tx query
+  // // ================================
+  // const LIMIT = 51;
+  // const transactionQuery = useMessagesByTypesQuery({
+  //   variables: {
+  //     limit: LIMIT,
+  //     offset: 1,
+  //     types: msgTypes ?? '{}',
+  //   },
+  //   onError: () => {
+  //     handleSetState((prevState) => ({ ...prevState, loading: false }));
+  //   },
+  //   onCompleted: (data) => {
+  //     const itemsLength = data.messagesByTypes.length;
+  //     const newItems = uniqueAndSort([...state.items, ...(formatTransactions(data) ?? [])]);
+  //     handleSetState((prevState) => ({
+  //       ...prevState,
+  //       loading: false,
+  //       items: newItems,
+  //       hasNextPage: itemsLength === 51,
+  //       isNextPageLoading: false,
+  //     }));
+  //   },
+  // });
 
   const loadNextPage = async () => {
     handleSetState((prevState) => ({ ...prevState, isNextPageLoading: true }));

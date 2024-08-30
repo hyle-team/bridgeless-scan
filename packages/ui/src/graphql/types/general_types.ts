@@ -13916,6 +13916,7 @@ export const TransactionsDocument = gql`
     hash
     success
     block {
+      height
       timestamp
     }
     messages
@@ -13962,7 +13963,15 @@ export const LastHundredBlocksDocument = gql`
       }
     }
     transactions {
+      height
       hash
+      success
+      messages
+      logs
+      block {
+        height
+        timestamp
+      }
     }
     precommits: pre_commits(
       where: {validator: {validator_info: {operator_address: {_eq: $address}}}}
