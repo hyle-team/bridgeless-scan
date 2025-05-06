@@ -13,7 +13,7 @@ const InitialLoad = () => {
   return (
     <div className={classes.root}>
       <div>
-        <span className={classes.logo}><ChainIcon type="logo" alt="logo" /></span>
+        <ChainIcon type="logo" alt="logo" className={classes.logo} />
         <LinearProgress className={classes.divider} />
         {theme === 'light' ? <BigDipperLogoRed /> : <BigDipperLogoWhite />}
       </div>

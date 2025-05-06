@@ -21,15 +21,14 @@ const useStyles = makeStyles()((theme) => ({
     },
   },
   logo: {
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '300px',
-    },
-    display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    width: '10rem',
+    height: '5rem',
     position: 'relative',
-    height: 48,
+    [theme.breakpoints.up('sm')]: {
+      width: '20rem',
+    },
   },
 
   divider: {

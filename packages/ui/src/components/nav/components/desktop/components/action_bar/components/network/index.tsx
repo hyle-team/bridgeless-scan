@@ -19,7 +19,7 @@ const Network: FC<NetworkProps> = ({ className }) => {
       tabIndex={0}
       aria-label={selectedName}
     >
-      <span className={cx(classes.icon,className)}><ChainIcon type="icon" alt="icon"/></span>
+      <ChainIcon type="icon" alt="icon" className={classes.icon} />
 
       <Typography variant="body1">{selectedName}</Typography>
     </div>

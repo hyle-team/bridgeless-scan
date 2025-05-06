@@ -16,10 +16,11 @@ const useStyles = makeStyles()((theme) => ({
     color: theme.palette.primary.main,
   },
   logo: {
-    width: '275px',
-    height: 'auto',
-    display: 'flex',
-    position: 'relative',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '10rem',
+    height: '5rem',
+    position: 'relative'
   },
   timeContainer: {
     display: 'grid',

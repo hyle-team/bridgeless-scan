@@ -51,9 +51,7 @@ const Countdown: FC<CountdownProps> = ({ startGenesis }) => {
 
   return (
     <div className={classes.root}>
-      <span className={classes.logo}>
-        <ChainIcon type="logo" alt="logo" />
-      </span>
+        <ChainIcon type="logo" alt="logo" className={classes.logo} />
       <div className={classes.timeContainer}>
         <div className={classes.item}>
           <Typography variant="h1">{state.day}</Typography>

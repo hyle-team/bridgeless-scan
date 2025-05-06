@@ -2,15 +2,11 @@ import chainCoing from '@/chainConfig';
 import useStyles from '@/components/ChainIcon/useStyles';
 import Image, { type ImageProps } from 'next/image';
 
-import baseIconLight from 'shared-utils/assets/icons/base-light.svg?url';
+import baseIconLight from 'shared-utils/assets/icons/bridgeless-light.svg?url';
+import baseIconDark from 'shared-utils/assets/icons/bridgeless-dark.svg?url';
 
-import baseLogoLight from 'shared-utils/assets/logos/base-light.svg?url';
-
-import bridgelessIconLight from 'shared-utils/assets/icons/bridgeless-light.svg?url';
-import bridgelessIconDark from 'shared-utils/assets/icons/bridgeless-dark.svg?url';
-
-import bridgelessLogoLight from 'shared-utils/assets/logos/bridgeless-light.svg?url';
-import bridgelessLogoDark from 'shared-utils/assets/logos/bridgeless-dark.svg?url';
+import baseLogoLight from 'shared-utils/assets/logos/bridgeless-light.svg?url';
+import baseLogoDark from 'shared-utils/assets/logos/bridgeless-dark.svg?url';
 
 interface IconProps extends Omit<ImageProps, 'id' | 'src'> {
   type: 'icon' | 'logo';
@@ -24,34 +20,20 @@ const ChainIcon = ({
   ...props
 }: IconProps) => {
   const { classes, cx } = useStyles();
-  let [iconDark, iconLight] =
-    type === 'icon' ? [baseIconLight, baseIconLight] : [baseLogoLight, baseLogoLight];
-
-  switch (chainName) {
-    case 'base':
-      [iconDark, iconLight] =
-        type === 'icon'
-          ? [bridgelessIconDark, bridgelessIconLight]
-          : [bridgelessLogoDark, bridgelessLogoLight];
-      break;
-    default:
-      throw new Error(`chain ${chainName} not supported`);
-  }
-
-
-
+  const [iconDark, iconLight] =
+    type === 'icon' ? [baseIconDark, baseIconLight] : [baseLogoDark, baseLogoLight];
 
   return (
     <span className={cx(className, classes.container)}>
      <span className={className}>
        <Image
+         unoptimized
          fill
+         className={classes.light}
          src={iconLight}
          {...props}
-         className={classes.light}
-         unoptimized
        />
-       <Image fill className={classes.dark} src={iconDark} {...props} unoptimized />
+       <Image fill unoptimized className={classes.dark} src={iconDark} {...props}  />
 
     </span>
     </span>
