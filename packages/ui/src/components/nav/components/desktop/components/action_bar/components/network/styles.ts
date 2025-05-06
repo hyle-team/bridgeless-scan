@@ -17,6 +17,13 @@ const useStyles = makeStyles()((theme) => ({
     },
   },
   icon: {
+    display: 'flex',
+    flex: '0 1 auto',
+    height: 'auto',
+    aspectRatio: 1,
+    position: 'relative',
+    alignItems: 'center',
+    justifyContent: 'center',
     width: 24,
     marginRight: theme.spacing(1),
   },

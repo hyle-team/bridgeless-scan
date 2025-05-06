@@ -40,7 +40,6 @@ const Main = (props: MainProps) => {
   // init recoil values
   // =====================================
   useSettingsRecoil();
-  useBigDipperNetworks();
   useMarketRecoil();
   useUserRecoil();
   useWalletRecoil();

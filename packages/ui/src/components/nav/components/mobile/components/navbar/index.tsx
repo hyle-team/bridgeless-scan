@@ -13,7 +13,7 @@ const Navbar = (props: NavbarProps) => {
   const { classes, cx } = useStyles();
   const theme = useRecoilValue(readTheme);
   const { selectedName } = useBigDipperNetworks();
-  const { isOpen, openNetwork, toggleNavMenus } = props;
+  const { isOpen, toggleNavMenus } = props;
 
   return (
     <div className={classes.root}>
@@ -30,13 +30,9 @@ const Navbar = (props: NavbarProps) => {
         {/* =================================== */}
         <div
           className={classes.network}
-          onClick={openNetwork}
-          role="button"
-          tabIndex={0}
           aria-label={selectedName}
         >
           <p className="text">{selectedName}</p>
-          <ExpandMoreIcon fontSize="small" />
         </div>
         {/* =================================== */}
         {/* Hamburger */}

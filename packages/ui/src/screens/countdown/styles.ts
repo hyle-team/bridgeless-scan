@@ -17,6 +17,9 @@ const useStyles = makeStyles()((theme) => ({
   },
   logo: {
     width: '275px',
+    height: 'auto',
+    display: 'flex',
+    position: 'relative',
   },
   timeContainer: {
     display: 'grid',

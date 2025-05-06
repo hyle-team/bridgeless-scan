@@ -25,7 +25,13 @@ const useStyles = makeStyles()((theme) => ({
     [theme.breakpoints.up('sm')]: {
       width: '300px',
     },
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    height: 48,
   },
+
   divider: {
     margin: theme.spacing(2, 0),
   },

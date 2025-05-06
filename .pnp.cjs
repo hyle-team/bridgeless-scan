@@ -74,6 +74,7 @@ const RAW_RUNTIME_STATE =
           ["@mui/icons-material", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:5.11.16"],\
           ["@mui/material", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:5.12.3"],\
           ["@next/eslint-plugin-next", "npm:13.4.1"],\
+          ["@playwright/test", "npm:1.52.0"],\
           ["@socialgouv/matomo-next", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:1.6.1"],\
           ["@svgr/webpack", "npm:7.0.0"],\
           ["@testing-library/jest-dom", "npm:5.16.5"],\
@@ -5968,6 +5969,16 @@ const RAW_RUNTIME_STATE =
           ["picocolors", "npm:1.0.0"],\
           ["tiny-glob", "npm:0.2.9"],\
           ["tslib", "npm:2.5.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["@playwright/test", [\
+      ["npm:1.52.0", {\
+        "packageLocation": "./.yarn/cache/@playwright-test-npm-1.52.0-f7863076b4-e18a4eb626.zip/node_modules/@playwright/test/",\
+        "packageDependencies": [\
+          ["@playwright/test", "npm:1.52.0"],\
+          ["playwright", "npm:1.52.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -16400,6 +16411,26 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["playwright", [\
+      ["npm:1.52.0", {\
+        "packageLocation": "./.yarn/cache/playwright-npm-1.52.0-9aa1aee800-2141754460.zip/node_modules/playwright/",\
+        "packageDependencies": [\
+          ["playwright", "npm:1.52.0"],\
+          ["fsevents", "patch:fsevents@npm%3A2.3.2#optional!builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"],\
+          ["playwright-core", "npm:1.52.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
+    ["playwright-core", [\
+      ["npm:1.52.0", {\
+        "packageLocation": "./.yarn/cache/playwright-core-npm-1.52.0-89a44d0230-42e13f5f98.zip/node_modules/playwright-core/",\
+        "packageDependencies": [\
+          ["playwright-core", "npm:1.52.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["postcss", [\
       ["npm:8.4.14", {\
         "packageLocation": "./.yarn/cache/postcss-npm-8.4.14-c0d448b728-1940e8d1da.zip/node_modules/postcss/",\
@@ -17697,6 +17728,7 @@ const RAW_RUNTIME_STATE =
           ["@mui/icons-material", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:5.11.16"],\
           ["@mui/material", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:5.12.3"],\
           ["@next/eslint-plugin-next", "npm:13.4.1"],\
+          ["@playwright/test", "npm:1.52.0"],\
           ["@socialgouv/matomo-next", "virtual:9dce388d82c018b4a7af5edc7243e51f7023d1ab93a923b3959d0066ac6881c93b965a0932486426cbefa96c9c8e47849d5ff541d2404b8aca246480fa32f0d2#npm:1.6.1"],\
           ["@svgr/webpack", "npm:7.0.0"],\
           ["@testing-library/jest-dom", "npm:5.16.5"],\
