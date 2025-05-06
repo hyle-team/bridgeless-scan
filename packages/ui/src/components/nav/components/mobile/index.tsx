@@ -15,7 +15,7 @@ type MobileProps = {
 
 const Mobile: FC<MobileProps> = ({ className, title }) => {
   const { ref: heightRef, height } = useGetComponentDimension();
-  const { isMenu, isNetwork, isOpen, openNetwork, toggleNavMenus } = useMobile();
+  const { isMenu,isOpen, openNetwork, toggleNavMenus } = useMobile();
   const { classes, cx } = useStyles();
 
   return (
@@ -28,14 +28,6 @@ const Mobile: FC<MobileProps> = ({ className, title }) => {
             menu: isMenu,
           })}
         />
-        <span
-          className={cx(classes.screens, {
-            open: isNetwork,
-            network: isNetwork,
-          })}
-        >
-          <Networks className={classes.networks} />
-        </span>
         <Navbar isOpen={isOpen} openNetwork={openNetwork} toggleNavMenus={toggleNavMenus} />
         <SearchBar className={classes.searchBar} />
       </div>

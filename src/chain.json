@@ -5,7 +5,7 @@
     "profile": true,
     "graphqlWs": false
   },
-  "previewImage": "https://s3.bigdipper.live/desmos.png",
+  "previewImage": "../packages/shared-utils/assets/logos/bridgeless-light.svg",
   "themes": {
     "default": "light",
     "themeList": [

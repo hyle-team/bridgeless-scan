@@ -8,12 +8,12 @@ import ChainIcon from '@/components/ChainIcon';
 
 const InitialLoad = () => {
   const theme = useRecoilValue(readTheme);
-  const { classes } = useStyles();
+  const { classes} = useStyles();
 
   return (
     <div className={classes.root}>
       <div>
-        <ChainIcon type="logo" className={classes.logo} alt="logo" />
+        <ChainIcon type="logo" alt="logo" className={classes.logo} />
         <LinearProgress className={classes.divider} />
         {theme === 'light' ? <BigDipperLogoRed /> : <BigDipperLogoWhite />}
       </div>

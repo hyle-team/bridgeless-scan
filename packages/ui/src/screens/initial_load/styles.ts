@@ -21,11 +21,16 @@ const useStyles = makeStyles()((theme) => ({
     },
   },
   logo: {
-    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '10rem',
+    height: '5rem',
+    position: 'relative',
     [theme.breakpoints.up('sm')]: {
-      width: '300px',
+      width: '20rem',
     },
   },
+
   divider: {
     margin: theme.spacing(2, 0),
   },

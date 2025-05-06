@@ -24,8 +24,11 @@ const useStyles = makeStyles()((theme) => ({
     },
   },
   logo: {
-    height: '56px',
-    // width: '225px',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '10rem',
+    height: '5rem',
+    position: 'relative'
   },
   content: {
     width: '100%',

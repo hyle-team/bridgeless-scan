@@ -18,6 +18,8 @@ type VotingPowerProps = {
   loading: boolean;
 };
 
+
+// TODO: Fix Nan numbers
 const VotingPower: FC<VotingPowerProps> = ({ className, data, status, loading }) => {
   const { t } = useAppTranslation('validators');
   const { onlineVPstate } = useOnlineVotingPower();
