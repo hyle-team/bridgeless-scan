@@ -219,10 +219,10 @@
         "validator": "bridgevaloper",
         "account": "bridge"
       },
-      "primaryTokenUnit": "bridge",
-      "votingPowerTokenUnit": "bridge",
+      "primaryTokenUnit": "abridge",
+      "votingPowerTokenUnit": "abridge",
       "tokenUnits": {
-        "bridge": {
+        "abridge": {
           "display": "BRIDGE",
           "exponent": 18
         }
