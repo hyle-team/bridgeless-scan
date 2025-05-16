@@ -205,62 +205,32 @@
       }
     }
   },
-  "keplr": "{\"chainId\":\"desmos-mainnet\",\"chainName\":\"Desmos\",\"chainSymbolImageUrl\":\"https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/desmos-mainnet/chain.png\",\"rpc\":\"https://rpc.mainnet.desmos.network\",\"rest\":\"https://api.mainnet.desmos.network\",\"nodeProvider\":{\"name\":\"Forbole\",\"email\":\"info@forbole.com\",\"website\":\"https://www.forbole.com\"},\"bip44\":{\"coinType\":852},\"bech32Config\":{\"bech32PrefixAccAddr\":\"desmos\",\"bech32PrefixAccPub\":\"desmospub\",\"bech32PrefixValAddr\":\"desmosvaloper\",\"bech32PrefixValPub\":\"desmosvaloperpub\",\"bech32PrefixConsAddr\":\"desmosvalcons\",\"bech32PrefixConsPub\":\"desmosvalconspub\"},\"currencies\":[{\"coinDenom\":\"DSM\",\"coinMinimalDenom\":\"udsm\",\"coinDecimals\":6,\"coinGeckoId\":\"desmos\"}],\"feeCurrencies\":[{\"coinDenom\":\"DSM\",\"coinMinimalDenom\":\"udsm\",\"coinDecimals\":6,\"coinGeckoId\":\"desmos\",\"gasPriceStep\":{\"low\":0.01,\"average\":0.03,\"high\":0.05}}],\"stakeCurrency\":{\"coinDenom\":\"DSM\",\"coinMinimalDenom\":\"udsm\",\"coinDecimals\":6,\"coinGeckoId\":\"desmos\"},\"features\":[]}",
+  "keplr": "{\n  \"chainId\": \"bridge_13441-1\",\n  \"chainName\": \"Bridgeless\",\n  \"chainSymbolImageUrl\": \"https://raw.githubusercontent.com/chainapsis/keplr-chain-registry/main/images/desmos-mainnet/chain.png\",\n  \"rpc\": \"https://rpc.node0.mainnet.bridgeless.com\",\n  \"rest\": \"https://rpc-api.node0.mainnet.bridgeless.com\",\n  \"bip44\": {\n    \"coinType\": 852\n  },\n  \"bech32Config\": {\n    \"bech32PrefixAccAddr\": \"bridge\",\n    \"bech32PrefixAccPub\": \"bridgepub\",\n    \"bech32PrefixValAddr\": \"bridgevaloper\",\n    \"bech32PrefixValPub\": \"bridgevaloperpub\",\n    \"bech32PrefixConsAddr\": \"bridgevalcons\",\n    \"bech32PrefixConsPub\": \"bridgevalconspub\"\n  },\n  \"currencies\": [\n    {\n      \"coinDenom\": \"BRIDGE\",\n      \"coinMinimalDenom\": \"abridge\",\n      \"coinDecimals\": 18,\n      \"coinGeckoId\": \"bridge\"\n    }\n  ],\n  \"feeCurrencies\": [\n    {\n      \"coinDenom\": \"BRIDGE\",\n      \"coinMinimalDenom\": \"abridge\",\n      \"coinDecimals\": 18,\n      \"coinGeckoId\": \"bridge\",\n      \"gasPriceStep\": {\n        \"low\": 0.01,\n        \"average\": 0.03,\n        \"high\": 0.05\n      }\n    }\n  ],\n  \"stakeCurrency\": {\n    \"coinDenom\": \"BRIDGE\",\n    \"coinMinimalDenom\": \"abridge\",\n    \"coinDecimals\": 18,\n    \"coinGeckoId\": \"bridge\"\n  },\n  \"features\": []\n}",
   "chains": [
     {
-      "network": "desmos-mainnet",
+      "network": "bridgeless-mainnet",
       "chainType": "Mainnet",
       "genesis": {
         "time": "2021-08-31T16:15:00",
         "height": 1
       },
       "prefix": {
-        "consensus": "desmosvalcons",
-        "validator": "desmosvaloper",
-        "account": "desmos"
+        "consensus": "bridgevalcons",
+        "validator": "bridgevaloper",
+        "account": "bridge"
       },
-      "primaryTokenUnit": "udsm",
-      "votingPowerTokenUnit": "udsm",
+      "primaryTokenUnit": "abridge",
+      "votingPowerTokenUnit": "abridge",
       "tokenUnits": {
-        "udsm": {
-          "display": "dsm",
-          "exponent": 6
+        "abridge": {
+          "display": "abridge",
+          "exponent": 18
         }
       },
       "endpoints": {
-        "graphql": "https://gql.desmos.forbole.com/v1/graphql",
-        "graphqlWebsocket": "wss://gql.desmos.forbole.com/v1/graphql",
-        "publicRpcWebsocket": "wss://rpc.desmos.forbole.com/websocket"
-      },
-      "marketing": {
-        "matomoURL": "https://analytics.bigdipper.live",
-        "matomoSiteID": "8"
-      }
-    },
-    {
-      "network": "morpheus-apollo-3",
-      "chainType": "Testnet",
-      "genesis": {
-        "time": "2022-10-24T08:00:00",
-        "height": 7942286
-      },
-      "prefix": {
-        "consensus": "desmosvalcons",
-        "validator": "desmosvaloper",
-        "account": "desmos"
-      },
-      "primaryTokenUnit": "udaric",
-      "votingPowerTokenUnit": "udaric",
-      "tokenUnits": {
-        "udaric": {
-          "display": "daric",
-          "exponent": 6
-        }
-      },
-      "endpoints": {
-        "graphql": "https://gql-morpheus.desmos.forbole.com/v1/graphql",
-        "graphqlWebsocket": "wss://gql-morpheus.desmos.forbole.com/v1/graphql",
-        "publicRpcWebsocket": "wss://rpc-morpheus.desmos.forbole.com/websocket"
+        "graphql": "https://hasura.scan.mainnet.bridgeless.com/v1/graphql",
+        "graphqlWebsocket": "wss://hasura.scan.mainnet.bridgeless.com/v1/graphql",
+        "publicRpcWebsocket": "https://rpc.node0.mainnet.bridgeless.com/websocket"
       },
       "marketing": {
         "matomoURL": "https://analytics.bigdipper.live",
