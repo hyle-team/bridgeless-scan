@@ -3,6 +3,8 @@
 # dependencies
 node_modules/
 
+.vscode
+
 # next.js generates its own .tsbuildinfo at .next/cache
 **/.tsbuildinfo
 .eslintcache
