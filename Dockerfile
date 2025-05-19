@@ -6,7 +6,7 @@ RUN apk add --no-cache git make clang build-base python3
 WORKDIR /app
 
 COPY . ./
-RUN yarn install
+RUN yarn
 RUN yarn build
 
 ENV NODE_ENV production
