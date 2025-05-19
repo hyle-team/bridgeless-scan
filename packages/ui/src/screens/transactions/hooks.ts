@@ -129,7 +129,7 @@ export const useTransactions = () => {
   });
 
   const LIMIT = 51;
-  const transactionQuery =useTransactionsQuery(
+  const transactionQuery = useTransactionsQuery(
       {
         variables: {
           limit: LIMIT,
@@ -140,14 +140,14 @@ export const useTransactions = () => {
         },
 
         onCompleted: (data) => {
-          const itemsLength = data.messagesByTypes.length;
+          const itemsLength = data.transactions.length;
           const newItems = uniqueAndSort([...state.items, ...(formatTransactions(data) ?? [])]);
           handleSetState((prevState) => ({
             ...prevState,
-            loading: false,
+            loading: true,
             items: newItems,
             hasNextPage: itemsLength === 51,
-            isNextPageLoading: false,
+            isNextPageLoading: true,
           }));
         },
       }
@@ -212,8 +212,8 @@ export const useTransactions = () => {
         handleSetState((prevState) => ({
           ...prevState,
           items: newItems,
-          isNextPageLoading: false,
-          hasNextPage: itemsLength === 51,
+          isNextPageLoading: true,
+          hasNextPage: itemsLength === 7,
         }));
       });
   };
