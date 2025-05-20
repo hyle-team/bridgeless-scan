@@ -1,9 +1,7 @@
-name: Build Bridgeless scan docker image
+name: Build MAINNET Bridgeless scan docker image
 on:
   push:
     branches:
-      - 'main'
-      - 'master'
       - 'chains/mainnet'
 
 env:
@@ -22,13 +20,9 @@ jobs:
       - name: Log in to registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
 
-      - name: Cache layers
-        uses: actions/cache@v3
-        with:
-          path: "${{ github.workspace }}/.skaffold/cache"
-          key: skaffold-${{ hashFiles('**/cache') }}
-          restore-keys: |
-            skaffold-
+      - name: Create .env file
+        run: |
+          echo "${{ secrets.ENV_MAINNET }}" | base64 -d > .env
 
       - name: Run Skaffold pipeline as command
         uses: hiberbee/github-action-skaffold@latest
