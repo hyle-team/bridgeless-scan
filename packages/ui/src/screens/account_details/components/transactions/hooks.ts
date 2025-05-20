@@ -10,11 +10,12 @@ import type { TransactionState } from '@/screens/account_details/components/tran
 import { convertMsgType } from '@/utils/convert_msg_type';
 import { useRecoilValue } from 'recoil';
 import { readFilter } from '@/recoil/transactions_filter';
+import chainConfig from '@/chainConfig';
 
 const LIMIT = 50;
 
 export const getAddressPubKeyRegex = async (address: string) => {
-  const response = await fetch(`https://rpc-api.node0.mainnet.bridgeless.com/cosmos/auth/v1beta1/accounts/${address}`)
+  const response = await fetch(`${chainConfig().restApiUrl}/accounts/${address}`)
 
   if (!response.ok) {
     throw new Error('Network response was not ok');
