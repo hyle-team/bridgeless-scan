@@ -106,26 +106,6 @@ const Settings: FC<ComponentDefault> = (props) => {
                 placeholder={t(time)}
               />
             </div>
-
-            <div className={classes.formItem}>
-              <Typography className="form-item--label">{t('txListFormat')}</Typography>
-              <Select
-                variant="outlined"
-                value={state.txListFormat}
-                onChange={(e) => handleChange('txListFormat', (e?.target?.value as string) ?? '')}
-                MenuProps={{
-                  MenuListProps: {
-                    disablePadding: true,
-                  },
-                }}
-              >
-                {TX_LIST.map((l) => (
-                  <MenuItem key={l} value={l}>
-                    {t(l)}
-                  </MenuItem>
-                ))}
-              </Select>
-            </div>
           </form>
         </DialogContent>
         <DialogActions>
