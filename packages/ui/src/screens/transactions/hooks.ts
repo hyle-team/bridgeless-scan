@@ -129,7 +129,7 @@ export const useTransactions = () => {
       {
         variables: {
           limit: LIMIT,
-          offset: 1,
+          offset: 0,
         },
         onError: () => {
           handleSetState((prevState) => ({ ...prevState, loading: false }));

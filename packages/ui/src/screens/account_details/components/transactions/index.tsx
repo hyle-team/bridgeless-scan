@@ -1,21 +1,48 @@
 import Typography from '@mui/material/Typography';
 import useAppTranslation from '@/hooks/useAppTranslation';
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useRecoilValue, SetterOrUpdater, useRecoilState } from 'recoil';
 import Box from '@/components/box';
 import TransactionsList from '@/components/transactions_list';
 import TransactionsListDetails from '@/components/transactions_list_details';
 import { readTx } from '@/recoil/settings';
 import { writeFilter, writeSelectedMsgTypes } from '@/recoil/transactions_filter';
-import { useTransactions } from '@/screens/account_details/components/transactions/hooks';
+import { getAddressPubKeyRegex, useTransactions } from '@/screens/account_details/components/transactions/hooks';
 import useStyles from '@/screens/account_details/components/transactions/styles';
+import { useRouter } from 'next/router';
 
 const Transactions: FC<ComponentDefault> = (props) => {
+  const router = useRouter();
+
+  const [addressRegex, setAddressRegex] = useState<string>();
+
+  useEffect(() => {
+    if (addressRegex) return;
+
+    const init = async () => {
+      setAddressRegex(await getAddressPubKeyRegex(router?.query?.address as string));
+    }
+
+    init();
+
+  }, [addressRegex, router?.query?.address])
+
+  if (!addressRegex) return null;
+
+  return (
+    <TransactionsContent {...props} addressRegex={addressRegex} />
+  )
+
+}
+
+const TransactionsContent: FC<ComponentDefault & {
+  addressRegex: string
+}> = (props) => {
   const txListFormat = useRecoilValue(readTx);
   const { classes, cx } = useStyles();
   const { t } = useAppTranslation('validators');
 
-  const { state, loadNextPage } = useTransactions();
+  const { state, loadNextPage } = useTransactions(props.addressRegex);
 
   const loadMoreItems = state.isNextPageLoading ? () => null : loadNextPage;
   const isItemLoaded = (index: number) => !state.hasNextPage || index < state.data.length;

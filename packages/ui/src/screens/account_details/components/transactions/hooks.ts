@@ -13,7 +13,7 @@ import { readFilter } from '@/recoil/transactions_filter';
 
 const LIMIT = 50;
 
-const getAddressPubKeyRegex = async (address: string) => {
+export const getAddressPubKeyRegex = async (address: string) => {
   const response = await fetch(`https://rpc-api.node0.mainnet.bridgeless.com/cosmos/auth/v1beta1/accounts/${address}`)
 
   if (!response.ok) {
@@ -73,7 +73,7 @@ const formatTransactions = (data: GetMessagesByAddressQuery): Transactions[] => 
   });
 };
 
-export function useTransactions() {
+export function useTransactions(addressRegex: string) {
   const router = useRouter();
   const [state, setState] = useState<TransactionState>({
     data: [],
@@ -84,18 +84,12 @@ export function useTransactions() {
   const msgTypes = useRecoilValue(readFilter);
   const isFirst = useRef(true);
 
-  const [addressRegex, setAddressRegex] = useState<string>();
-
   // reset state when address changes
   useEffect(() => {
-    const loadAddressRegex = async () => {
-      setAddressRegex(await getAddressPubKeyRegex(router?.query?.address as string));
-    }
 
     if (isFirst.current) {
       isFirst.current = false;
     } else {
-      loadAddressRegex();
       setState((prevState) => ({
         ...prevState,
         data: [],
