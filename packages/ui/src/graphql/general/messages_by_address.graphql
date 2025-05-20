@@ -13,3 +13,19 @@ query GetMessagesByAddress($address: _text, $limit: bigint = 50, $offset: bigint
     }
   }
 }
+
+query GetTransactionsByAddressRegex($_regex: String, $offset: Int = 0, $limit: Int = 10) {
+  transaction(where: {signer_infos: {_cast: {String: {_regex: $_regex}}}}, offset: $offset, limit: $limit) {
+    hash
+    signatures
+    fee
+    gas_used
+    gas_wanted
+    logs
+    height
+    messages
+    success
+    signer_infos
+    raw_log
+  }
+}

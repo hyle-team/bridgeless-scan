@@ -3,10 +3,10 @@ generates:
   ./src/graphql/types/general_types.ts:
     documents:
       - 'src/graphql/general/*'
-    schema: https://gql.desmos.forbole.com/v1/graphql
+    schema: https://hasura.scan.mainnet.bridgeless.com/v1/graphql
     config:
       # omitOperationSuffix: true
-      skipTypeNameForRoot: true
+      # skipTypeNameForRoot: true
     plugins:
       - "typescript"
       - "typescript-operations"

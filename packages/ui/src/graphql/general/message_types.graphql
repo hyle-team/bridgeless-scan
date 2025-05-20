@@ -1,18 +1,15 @@
-query MessageTypes{
-  msgTypes: message_type{
+query MessageTypes {
+  msgTypes: message {
     type
-    module
-    label
   }
 }
 
+
 query MsgTypesByAddress($addresses: _text = "{}") {
-  msgTypes: messages_types_by_address(args: {addresses: $addresses}) {
-    message_type{
-      label
-      module
-      type
-    }
+  msgTypes: messages_by_address(args: {addresses: $addresses}) {
+    height
+    index
+    involved_accounts_addresses
   }
 }
 

@@ -5,98 +5,100 @@ export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string;
-  String: string;
-  Boolean: boolean;
-  Int: number;
-  Float: number;
-  bigint: any;
-  jsonb: any;
-  timestamp: any;
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
+  bigint: { input: any; output: any; }
+  jsonb: { input: any; output: any; }
+  timestamp: { input: any; output: any; }
 };
 
 /** Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'. */
 export type Boolean_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['Boolean']>;
-  _gt?: InputMaybe<Scalars['Boolean']>;
-  _gte?: InputMaybe<Scalars['Boolean']>;
-  _in?: InputMaybe<Array<Scalars['Boolean']>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
-  _lt?: InputMaybe<Scalars['Boolean']>;
-  _lte?: InputMaybe<Scalars['Boolean']>;
-  _neq?: InputMaybe<Scalars['Boolean']>;
-  _nin?: InputMaybe<Array<Scalars['Boolean']>>;
+  _eq?: InputMaybe<Scalars['Boolean']['input']>;
+  _gt?: InputMaybe<Scalars['Boolean']['input']>;
+  _gte?: InputMaybe<Scalars['Boolean']['input']>;
+  _in?: InputMaybe<Array<Scalars['Boolean']['input']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _lt?: InputMaybe<Scalars['Boolean']['input']>;
+  _lte?: InputMaybe<Scalars['Boolean']['input']>;
+  _neq?: InputMaybe<Scalars['Boolean']['input']>;
+  _nin?: InputMaybe<Array<Scalars['Boolean']['input']>>;
 };
 
 /** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
 export type Int_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['Int']>;
-  _gt?: InputMaybe<Scalars['Int']>;
-  _gte?: InputMaybe<Scalars['Int']>;
-  _in?: InputMaybe<Array<Scalars['Int']>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
-  _lt?: InputMaybe<Scalars['Int']>;
-  _lte?: InputMaybe<Scalars['Int']>;
-  _neq?: InputMaybe<Scalars['Int']>;
-  _nin?: InputMaybe<Array<Scalars['Int']>>;
+  _eq?: InputMaybe<Scalars['Int']['input']>;
+  _gt?: InputMaybe<Scalars['Int']['input']>;
+  _gte?: InputMaybe<Scalars['Int']['input']>;
+  _in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _lt?: InputMaybe<Scalars['Int']['input']>;
+  _lte?: InputMaybe<Scalars['Int']['input']>;
+  _neq?: InputMaybe<Scalars['Int']['input']>;
+  _nin?: InputMaybe<Array<Scalars['Int']['input']>>;
 };
 
 /** Boolean expression to compare columns of type "String". All fields are combined with logical 'AND'. */
 export type String_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['String']>;
-  _gt?: InputMaybe<Scalars['String']>;
-  _gte?: InputMaybe<Scalars['String']>;
+  _eq?: InputMaybe<Scalars['String']['input']>;
+  _gt?: InputMaybe<Scalars['String']['input']>;
+  _gte?: InputMaybe<Scalars['String']['input']>;
   /** does the column match the given case-insensitive pattern */
-  _ilike?: InputMaybe<Scalars['String']>;
-  _in?: InputMaybe<Array<Scalars['String']>>;
+  _ilike?: InputMaybe<Scalars['String']['input']>;
+  _in?: InputMaybe<Array<Scalars['String']['input']>>;
   /** does the column match the given POSIX regular expression, case insensitive */
-  _iregex?: InputMaybe<Scalars['String']>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _iregex?: InputMaybe<Scalars['String']['input']>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
   /** does the column match the given pattern */
-  _like?: InputMaybe<Scalars['String']>;
-  _lt?: InputMaybe<Scalars['String']>;
-  _lte?: InputMaybe<Scalars['String']>;
-  _neq?: InputMaybe<Scalars['String']>;
+  _like?: InputMaybe<Scalars['String']['input']>;
+  _lt?: InputMaybe<Scalars['String']['input']>;
+  _lte?: InputMaybe<Scalars['String']['input']>;
+  _neq?: InputMaybe<Scalars['String']['input']>;
   /** does the column NOT match the given case-insensitive pattern */
-  _nilike?: InputMaybe<Scalars['String']>;
-  _nin?: InputMaybe<Array<Scalars['String']>>;
+  _nilike?: InputMaybe<Scalars['String']['input']>;
+  _nin?: InputMaybe<Array<Scalars['String']['input']>>;
   /** does the column NOT match the given POSIX regular expression, case insensitive */
-  _niregex?: InputMaybe<Scalars['String']>;
+  _niregex?: InputMaybe<Scalars['String']['input']>;
   /** does the column NOT match the given pattern */
-  _nlike?: InputMaybe<Scalars['String']>;
+  _nlike?: InputMaybe<Scalars['String']['input']>;
   /** does the column NOT match the given POSIX regular expression, case sensitive */
-  _nregex?: InputMaybe<Scalars['String']>;
+  _nregex?: InputMaybe<Scalars['String']['input']>;
   /** does the column NOT match the given SQL regular expression */
-  _nsimilar?: InputMaybe<Scalars['String']>;
+  _nsimilar?: InputMaybe<Scalars['String']['input']>;
   /** does the column match the given POSIX regular expression, case sensitive */
-  _regex?: InputMaybe<Scalars['String']>;
+  _regex?: InputMaybe<Scalars['String']['input']>;
   /** does the column match the given SQL regular expression */
-  _similar?: InputMaybe<Scalars['String']>;
+  _similar?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** columns and relationships of "application_link" */
 export type Application_Link = {
   __typename?: 'application_link';
-  application: Scalars['String'];
-  creation_time: Scalars['timestamp'];
-  expiration_time: Scalars['timestamp'];
+  application: Scalars['String']['output'];
+  creation_time: Scalars['timestamp']['output'];
+  expiration_time: Scalars['timestamp']['output'];
   /** An object relationship */
   oracle_request?: Maybe<Application_Link_Oracle_Request>;
   /** An object relationship */
   profile?: Maybe<Profile>;
-  result?: Maybe<Scalars['jsonb']>;
-  state: Scalars['String'];
-  user_address: Scalars['String'];
-  username: Scalars['String'];
+  result?: Maybe<Scalars['jsonb']['output']>;
+  state: Scalars['String']['output'];
+  user_address: Scalars['String']['output'];
+  username: Scalars['String']['output'];
 };
 
 
 /** columns and relationships of "application_link" */
 export type Application_LinkResultArgs = {
-  path?: InputMaybe<Scalars['String']>;
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** order by aggregate values of table "application_link" */
@@ -145,16 +147,16 @@ export type Application_Link_Min_Order_By = {
 /** columns and relationships of "application_link_oracle_request" */
 export type Application_Link_Oracle_Request = {
   __typename?: 'application_link_oracle_request';
-  call_data: Scalars['jsonb'];
-  client_id: Scalars['String'];
-  request_id: Scalars['bigint'];
-  script_id: Scalars['bigint'];
+  call_data: Scalars['jsonb']['output'];
+  client_id: Scalars['String']['output'];
+  request_id: Scalars['bigint']['output'];
+  script_id: Scalars['bigint']['output'];
 };
 
 
 /** columns and relationships of "application_link_oracle_request" */
 export type Application_Link_Oracle_RequestCall_DataArgs = {
-  path?: InputMaybe<Scalars['String']>;
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Boolean expression to filter rows from the table "application_link_oracle_request". All fields are combined with a logical 'AND'. */
@@ -204,15 +206,15 @@ export type Application_Link_Order_By = {
 /** columns and relationships of "application_link_score" */
 export type Application_Link_Score = {
   __typename?: 'application_link_score';
-  details: Scalars['jsonb'];
-  score: Scalars['Int'];
-  timestamp: Scalars['timestamp'];
+  details: Scalars['jsonb']['output'];
+  score: Scalars['Int']['output'];
+  timestamp: Scalars['timestamp']['output'];
 };
 
 
 /** columns and relationships of "application_link_score" */
 export type Application_Link_ScoreDetailsArgs = {
-  path?: InputMaybe<Scalars['String']>;
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Boolean expression to filter rows from the table "application_link_score". All fields are combined with a logical 'AND'. */
@@ -262,15 +264,15 @@ export enum Application_Link_Select_Column {
 
 /** Boolean expression to compare columns of type "bigint". All fields are combined with logical 'AND'. */
 export type Bigint_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['bigint']>;
-  _gt?: InputMaybe<Scalars['bigint']>;
-  _gte?: InputMaybe<Scalars['bigint']>;
-  _in?: InputMaybe<Array<Scalars['bigint']>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
-  _lt?: InputMaybe<Scalars['bigint']>;
-  _lte?: InputMaybe<Scalars['bigint']>;
-  _neq?: InputMaybe<Scalars['bigint']>;
-  _nin?: InputMaybe<Array<Scalars['bigint']>>;
+  _eq?: InputMaybe<Scalars['bigint']['input']>;
+  _gt?: InputMaybe<Scalars['bigint']['input']>;
+  _gte?: InputMaybe<Scalars['bigint']['input']>;
+  _in?: InputMaybe<Array<Scalars['bigint']['input']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _lt?: InputMaybe<Scalars['bigint']['input']>;
+  _lte?: InputMaybe<Scalars['bigint']['input']>;
+  _neq?: InputMaybe<Scalars['bigint']['input']>;
+  _nin?: InputMaybe<Array<Scalars['bigint']['input']>>;
 };
 
 /** columns and relationships of "chain_link" */
@@ -280,22 +282,22 @@ export type Chain_Link = {
   chain_config: Chain_Link_Chain_Config;
   /** An array relationship */
   chain_link_proofs: Array<Chain_Link_Proof>;
-  creation_time: Scalars['timestamp'];
-  external_address: Scalars['String'];
-  height: Scalars['bigint'];
+  creation_time: Scalars['timestamp']['output'];
+  external_address: Scalars['String']['output'];
+  height: Scalars['bigint']['output'];
   /** An object relationship */
   profile?: Maybe<Profile>;
   /** An object relationship */
   proof?: Maybe<Chain_Link_Proof>;
-  user_address: Scalars['String'];
+  user_address: Scalars['String']['output'];
 };
 
 
 /** columns and relationships of "chain_link" */
 export type Chain_LinkChain_Link_ProofsArgs = {
   distinct_on?: InputMaybe<Array<Chain_Link_Proof_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Chain_Link_Proof_Order_By>>;
   where?: InputMaybe<Chain_Link_Proof_Bool_Exp>;
 };
@@ -340,15 +342,15 @@ export type Chain_Link_Chain_Config = {
   __typename?: 'chain_link_chain_config';
   /** An array relationship */
   chain_links: Array<Chain_Link>;
-  name: Scalars['String'];
+  name: Scalars['String']['output'];
 };
 
 
 /** columns and relationships of "chain_link_chain_config" */
 export type Chain_Link_Chain_ConfigChain_LinksArgs = {
   distinct_on?: InputMaybe<Array<Chain_Link_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Chain_Link_Order_By>>;
   where?: InputMaybe<Chain_Link_Bool_Exp>;
 };
@@ -407,15 +409,15 @@ export type Chain_Link_Proof = {
   __typename?: 'chain_link_proof';
   /** An object relationship */
   chain_link: Chain_Link;
-  plain_text: Scalars['String'];
-  public_key: Scalars['jsonb'];
-  signature: Scalars['String'];
+  plain_text: Scalars['String']['output'];
+  public_key: Scalars['jsonb']['output'];
+  signature: Scalars['String']['output'];
 };
 
 
 /** columns and relationships of "chain_link_proof" */
 export type Chain_Link_ProofPublic_KeyArgs = {
-  path?: InputMaybe<Scalars['String']>;
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** order by aggregate values of table "chain_link_proof" */
@@ -518,10 +520,10 @@ export type Dtag_Transfer_Requests = {
   __typename?: 'dtag_transfer_requests';
   /** An object relationship */
   receiver?: Maybe<Profile>;
-  receiver_address: Scalars['String'];
+  receiver_address: Scalars['String']['output'];
   /** An object relationship */
   sender?: Maybe<Profile>;
-  sender_address: Scalars['String'];
+  sender_address: Scalars['String']['output'];
 };
 
 /** order by aggregate values of table "dtag_transfer_requests" */
@@ -573,24 +575,24 @@ export enum Dtag_Transfer_Requests_Select_Column {
 /** Boolean expression to compare columns of type "jsonb". All fields are combined with logical 'AND'. */
 export type Jsonb_Comparison_Exp = {
   /** is the column contained in the given json value */
-  _contained_in?: InputMaybe<Scalars['jsonb']>;
+  _contained_in?: InputMaybe<Scalars['jsonb']['input']>;
   /** does the column contain the given json value at the top level */
-  _contains?: InputMaybe<Scalars['jsonb']>;
-  _eq?: InputMaybe<Scalars['jsonb']>;
-  _gt?: InputMaybe<Scalars['jsonb']>;
-  _gte?: InputMaybe<Scalars['jsonb']>;
+  _contains?: InputMaybe<Scalars['jsonb']['input']>;
+  _eq?: InputMaybe<Scalars['jsonb']['input']>;
+  _gt?: InputMaybe<Scalars['jsonb']['input']>;
+  _gte?: InputMaybe<Scalars['jsonb']['input']>;
   /** does the string exist as a top-level key in the column */
-  _has_key?: InputMaybe<Scalars['String']>;
+  _has_key?: InputMaybe<Scalars['String']['input']>;
   /** do all of these strings exist as top-level keys in the column */
-  _has_keys_all?: InputMaybe<Array<Scalars['String']>>;
+  _has_keys_all?: InputMaybe<Array<Scalars['String']['input']>>;
   /** do any of these strings exist as top-level keys in the column */
-  _has_keys_any?: InputMaybe<Array<Scalars['String']>>;
-  _in?: InputMaybe<Array<Scalars['jsonb']>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
-  _lt?: InputMaybe<Scalars['jsonb']>;
-  _lte?: InputMaybe<Scalars['jsonb']>;
-  _neq?: InputMaybe<Scalars['jsonb']>;
-  _nin?: InputMaybe<Array<Scalars['jsonb']>>;
+  _has_keys_any?: InputMaybe<Array<Scalars['String']['input']>>;
+  _in?: InputMaybe<Array<Scalars['jsonb']['input']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _lt?: InputMaybe<Scalars['jsonb']['input']>;
+  _lte?: InputMaybe<Scalars['jsonb']['input']>;
+  _neq?: InputMaybe<Scalars['jsonb']['input']>;
+  _nin?: InputMaybe<Array<Scalars['jsonb']['input']>>;
 };
 
 /** column ordering options */
@@ -612,39 +614,39 @@ export enum Order_By {
 /** columns and relationships of "profile" */
 export type Profile = {
   __typename?: 'profile';
-  address: Scalars['String'];
+  address: Scalars['String']['output'];
   /** An array relationship */
   applications_links: Array<Application_Link>;
-  bio: Scalars['String'];
+  bio: Scalars['String']['output'];
   /** An array relationship */
   chain_links: Array<Chain_Link>;
   /** An object relationship */
   counters?: Maybe<Profile_Counters>;
-  cover_pic: Scalars['String'];
-  creation_time: Scalars['timestamp'];
-  dtag: Scalars['String'];
+  cover_pic: Scalars['String']['output'];
+  creation_time: Scalars['timestamp']['output'];
+  dtag: Scalars['String']['output'];
   /** Computed field that tells whether the current Hasura user has blocked this profile */
-  has_user_blocked?: Maybe<Scalars['Boolean']>;
+  has_user_blocked?: Maybe<Scalars['Boolean']['output']>;
   /** An array relationship */
   incoming_dtag_transfer_requests: Array<Dtag_Transfer_Requests>;
   /** Computed field that tells whether the given profile has blocked the current Hasura user */
-  is_user_blocked_by?: Maybe<Scalars['Boolean']>;
+  is_user_blocked_by?: Maybe<Scalars['Boolean']['output']>;
   /** A computed field that tells whether the given Hasura user is followed by this profile */
-  is_user_followed_by?: Maybe<Scalars['Boolean']>;
+  is_user_followed_by?: Maybe<Scalars['Boolean']['output']>;
   /** A computed field that tells whether the current Hasura user is following this profile */
-  is_user_following?: Maybe<Scalars['Boolean']>;
-  nickname: Scalars['String'];
+  is_user_following?: Maybe<Scalars['Boolean']['output']>;
+  nickname: Scalars['String']['output'];
   /** An array relationship */
   outgoing_dtag_transfer_requests: Array<Dtag_Transfer_Requests>;
-  profile_pic: Scalars['String'];
+  profile_pic: Scalars['String']['output'];
 };
 
 
 /** columns and relationships of "profile" */
 export type ProfileApplications_LinksArgs = {
   distinct_on?: InputMaybe<Array<Application_Link_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Application_Link_Order_By>>;
   where?: InputMaybe<Application_Link_Bool_Exp>;
 };
@@ -653,8 +655,8 @@ export type ProfileApplications_LinksArgs = {
 /** columns and relationships of "profile" */
 export type ProfileChain_LinksArgs = {
   distinct_on?: InputMaybe<Array<Chain_Link_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Chain_Link_Order_By>>;
   where?: InputMaybe<Chain_Link_Bool_Exp>;
 };
@@ -663,8 +665,8 @@ export type ProfileChain_LinksArgs = {
 /** columns and relationships of "profile" */
 export type ProfileIncoming_Dtag_Transfer_RequestsArgs = {
   distinct_on?: InputMaybe<Array<Dtag_Transfer_Requests_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Dtag_Transfer_Requests_Order_By>>;
   where?: InputMaybe<Dtag_Transfer_Requests_Bool_Exp>;
 };
@@ -673,8 +675,8 @@ export type ProfileIncoming_Dtag_Transfer_RequestsArgs = {
 /** columns and relationships of "profile" */
 export type ProfileOutgoing_Dtag_Transfer_RequestsArgs = {
   distinct_on?: InputMaybe<Array<Dtag_Transfer_Requests_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Dtag_Transfer_Requests_Order_By>>;
   where?: InputMaybe<Dtag_Transfer_Requests_Bool_Exp>;
 };
@@ -689,7 +691,7 @@ export type Profile_Aggregate = {
 /** aggregate fields of "profile" */
 export type Profile_Aggregate_Fields = {
   __typename?: 'profile_aggregate_fields';
-  count: Scalars['Int'];
+  count: Scalars['Int']['output'];
   max?: Maybe<Profile_Max_Fields>;
   min?: Maybe<Profile_Min_Fields>;
 };
@@ -698,7 +700,7 @@ export type Profile_Aggregate_Fields = {
 /** aggregate fields of "profile" */
 export type Profile_Aggregate_FieldsCountArgs = {
   columns?: InputMaybe<Array<Profile_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** Boolean expression to filter rows from the table "profile". All fields are combined with a logical 'AND'. */
@@ -727,11 +729,11 @@ export type Profile_Bool_Exp = {
 /** columns and relationships of "profile_counters" */
 export type Profile_Counters = {
   __typename?: 'profile_counters';
-  application_links_count: Scalars['bigint'];
-  blocks_count: Scalars['bigint'];
-  chain_links_count: Scalars['bigint'];
-  profile_address: Scalars['String'];
-  relationships_count: Scalars['bigint'];
+  application_links_count: Scalars['bigint']['output'];
+  blocks_count: Scalars['bigint']['output'];
+  chain_links_count: Scalars['bigint']['output'];
+  profile_address: Scalars['String']['output'];
+  relationships_count: Scalars['bigint']['output'];
 };
 
 /** Boolean expression to filter rows from the table "profile_counters". All fields are combined with a logical 'AND'. */
@@ -772,25 +774,25 @@ export enum Profile_Counters_Select_Column {
 /** aggregate max on columns */
 export type Profile_Max_Fields = {
   __typename?: 'profile_max_fields';
-  address?: Maybe<Scalars['String']>;
-  bio?: Maybe<Scalars['String']>;
-  cover_pic?: Maybe<Scalars['String']>;
-  creation_time?: Maybe<Scalars['timestamp']>;
-  dtag?: Maybe<Scalars['String']>;
-  nickname?: Maybe<Scalars['String']>;
-  profile_pic?: Maybe<Scalars['String']>;
+  address?: Maybe<Scalars['String']['output']>;
+  bio?: Maybe<Scalars['String']['output']>;
+  cover_pic?: Maybe<Scalars['String']['output']>;
+  creation_time?: Maybe<Scalars['timestamp']['output']>;
+  dtag?: Maybe<Scalars['String']['output']>;
+  nickname?: Maybe<Scalars['String']['output']>;
+  profile_pic?: Maybe<Scalars['String']['output']>;
 };
 
 /** aggregate min on columns */
 export type Profile_Min_Fields = {
   __typename?: 'profile_min_fields';
-  address?: Maybe<Scalars['String']>;
-  bio?: Maybe<Scalars['String']>;
-  cover_pic?: Maybe<Scalars['String']>;
-  creation_time?: Maybe<Scalars['timestamp']>;
-  dtag?: Maybe<Scalars['String']>;
-  nickname?: Maybe<Scalars['String']>;
-  profile_pic?: Maybe<Scalars['String']>;
+  address?: Maybe<Scalars['String']['output']>;
+  bio?: Maybe<Scalars['String']['output']>;
+  cover_pic?: Maybe<Scalars['String']['output']>;
+  creation_time?: Maybe<Scalars['timestamp']['output']>;
+  dtag?: Maybe<Scalars['String']['output']>;
+  nickname?: Maybe<Scalars['String']['output']>;
+  profile_pic?: Maybe<Scalars['String']['output']>;
 };
 
 /** Ordering options when selecting data from "profile". */
@@ -834,13 +836,13 @@ export enum Profile_Select_Column {
 /** columns and relationships of "profiles_params" */
 export type Profiles_Params = {
   __typename?: 'profiles_params';
-  params: Scalars['jsonb'];
+  params: Scalars['jsonb']['output'];
 };
 
 
 /** columns and relationships of "profiles_params" */
 export type Profiles_ParamsParamsArgs = {
-  path?: InputMaybe<Scalars['String']>;
+  path?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Boolean expression to filter rows from the table "profiles_params". All fields are combined with a logical 'AND'. */
@@ -899,8 +901,8 @@ export type Query_Root = {
 
 export type Query_RootApplication_LinkArgs = {
   distinct_on?: InputMaybe<Array<Application_Link_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Application_Link_Order_By>>;
   where?: InputMaybe<Application_Link_Bool_Exp>;
 };
@@ -908,8 +910,8 @@ export type Query_RootApplication_LinkArgs = {
 
 export type Query_RootApplication_Link_Oracle_RequestArgs = {
   distinct_on?: InputMaybe<Array<Application_Link_Oracle_Request_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Application_Link_Oracle_Request_Order_By>>;
   where?: InputMaybe<Application_Link_Oracle_Request_Bool_Exp>;
 };
@@ -917,8 +919,8 @@ export type Query_RootApplication_Link_Oracle_RequestArgs = {
 
 export type Query_RootApplication_Link_ScoreArgs = {
   distinct_on?: InputMaybe<Array<Application_Link_Score_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Application_Link_Score_Order_By>>;
   where?: InputMaybe<Application_Link_Score_Bool_Exp>;
 };
@@ -926,8 +928,8 @@ export type Query_RootApplication_Link_ScoreArgs = {
 
 export type Query_RootChain_LinkArgs = {
   distinct_on?: InputMaybe<Array<Chain_Link_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Chain_Link_Order_By>>;
   where?: InputMaybe<Chain_Link_Bool_Exp>;
 };
@@ -935,8 +937,8 @@ export type Query_RootChain_LinkArgs = {
 
 export type Query_RootChain_Link_Chain_ConfigArgs = {
   distinct_on?: InputMaybe<Array<Chain_Link_Chain_Config_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Chain_Link_Chain_Config_Order_By>>;
   where?: InputMaybe<Chain_Link_Chain_Config_Bool_Exp>;
 };
@@ -944,8 +946,8 @@ export type Query_RootChain_Link_Chain_ConfigArgs = {
 
 export type Query_RootChain_Link_ProofArgs = {
   distinct_on?: InputMaybe<Array<Chain_Link_Proof_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Chain_Link_Proof_Order_By>>;
   where?: InputMaybe<Chain_Link_Proof_Bool_Exp>;
 };
@@ -953,8 +955,8 @@ export type Query_RootChain_Link_ProofArgs = {
 
 export type Query_RootDtag_Transfer_RequestsArgs = {
   distinct_on?: InputMaybe<Array<Dtag_Transfer_Requests_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Dtag_Transfer_Requests_Order_By>>;
   where?: InputMaybe<Dtag_Transfer_Requests_Bool_Exp>;
 };
@@ -962,8 +964,8 @@ export type Query_RootDtag_Transfer_RequestsArgs = {
 
 export type Query_RootProfileArgs = {
   distinct_on?: InputMaybe<Array<Profile_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Profile_Order_By>>;
   where?: InputMaybe<Profile_Bool_Exp>;
 };
@@ -971,22 +973,22 @@ export type Query_RootProfileArgs = {
 
 export type Query_RootProfile_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Profile_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Profile_Order_By>>;
   where?: InputMaybe<Profile_Bool_Exp>;
 };
 
 
 export type Query_RootProfile_By_PkArgs = {
-  address: Scalars['String'];
+  address: Scalars['String']['input'];
 };
 
 
 export type Query_RootProfile_CountersArgs = {
   distinct_on?: InputMaybe<Array<Profile_Counters_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Profile_Counters_Order_By>>;
   where?: InputMaybe<Profile_Counters_Bool_Exp>;
 };
@@ -994,8 +996,8 @@ export type Query_RootProfile_CountersArgs = {
 
 export type Query_RootProfiles_ParamsArgs = {
   distinct_on?: InputMaybe<Array<Profiles_Params_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Profiles_Params_Order_By>>;
   where?: InputMaybe<Profiles_Params_Bool_Exp>;
 };
@@ -1003,8 +1005,8 @@ export type Query_RootProfiles_ParamsArgs = {
 
 export type Query_RootUser_BlockArgs = {
   distinct_on?: InputMaybe<Array<User_Block_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<User_Block_Order_By>>;
   where?: InputMaybe<User_Block_Bool_Exp>;
 };
@@ -1012,8 +1014,8 @@ export type Query_RootUser_BlockArgs = {
 
 export type Query_RootUser_RelationshipArgs = {
   distinct_on?: InputMaybe<Array<User_Relationship_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<User_Relationship_Order_By>>;
   where?: InputMaybe<User_Relationship_Bool_Exp>;
 };
@@ -1021,8 +1023,8 @@ export type Query_RootUser_RelationshipArgs = {
 
 export type Query_RootUser_Relationship_AggregateArgs = {
   distinct_on?: InputMaybe<Array<User_Relationship_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<User_Relationship_Order_By>>;
   where?: InputMaybe<User_Relationship_Bool_Exp>;
 };
@@ -1064,8 +1066,8 @@ export type Subscription_Root = {
 
 export type Subscription_RootApplication_LinkArgs = {
   distinct_on?: InputMaybe<Array<Application_Link_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Application_Link_Order_By>>;
   where?: InputMaybe<Application_Link_Bool_Exp>;
 };
@@ -1073,8 +1075,8 @@ export type Subscription_RootApplication_LinkArgs = {
 
 export type Subscription_RootApplication_Link_Oracle_RequestArgs = {
   distinct_on?: InputMaybe<Array<Application_Link_Oracle_Request_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Application_Link_Oracle_Request_Order_By>>;
   where?: InputMaybe<Application_Link_Oracle_Request_Bool_Exp>;
 };
@@ -1082,8 +1084,8 @@ export type Subscription_RootApplication_Link_Oracle_RequestArgs = {
 
 export type Subscription_RootApplication_Link_ScoreArgs = {
   distinct_on?: InputMaybe<Array<Application_Link_Score_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Application_Link_Score_Order_By>>;
   where?: InputMaybe<Application_Link_Score_Bool_Exp>;
 };
@@ -1091,8 +1093,8 @@ export type Subscription_RootApplication_Link_ScoreArgs = {
 
 export type Subscription_RootChain_LinkArgs = {
   distinct_on?: InputMaybe<Array<Chain_Link_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Chain_Link_Order_By>>;
   where?: InputMaybe<Chain_Link_Bool_Exp>;
 };
@@ -1100,8 +1102,8 @@ export type Subscription_RootChain_LinkArgs = {
 
 export type Subscription_RootChain_Link_Chain_ConfigArgs = {
   distinct_on?: InputMaybe<Array<Chain_Link_Chain_Config_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Chain_Link_Chain_Config_Order_By>>;
   where?: InputMaybe<Chain_Link_Chain_Config_Bool_Exp>;
 };
@@ -1109,8 +1111,8 @@ export type Subscription_RootChain_Link_Chain_ConfigArgs = {
 
 export type Subscription_RootChain_Link_ProofArgs = {
   distinct_on?: InputMaybe<Array<Chain_Link_Proof_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Chain_Link_Proof_Order_By>>;
   where?: InputMaybe<Chain_Link_Proof_Bool_Exp>;
 };
@@ -1118,8 +1120,8 @@ export type Subscription_RootChain_Link_ProofArgs = {
 
 export type Subscription_RootDtag_Transfer_RequestsArgs = {
   distinct_on?: InputMaybe<Array<Dtag_Transfer_Requests_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Dtag_Transfer_Requests_Order_By>>;
   where?: InputMaybe<Dtag_Transfer_Requests_Bool_Exp>;
 };
@@ -1127,8 +1129,8 @@ export type Subscription_RootDtag_Transfer_RequestsArgs = {
 
 export type Subscription_RootProfileArgs = {
   distinct_on?: InputMaybe<Array<Profile_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Profile_Order_By>>;
   where?: InputMaybe<Profile_Bool_Exp>;
 };
@@ -1136,22 +1138,22 @@ export type Subscription_RootProfileArgs = {
 
 export type Subscription_RootProfile_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Profile_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Profile_Order_By>>;
   where?: InputMaybe<Profile_Bool_Exp>;
 };
 
 
 export type Subscription_RootProfile_By_PkArgs = {
-  address: Scalars['String'];
+  address: Scalars['String']['input'];
 };
 
 
 export type Subscription_RootProfile_CountersArgs = {
   distinct_on?: InputMaybe<Array<Profile_Counters_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Profile_Counters_Order_By>>;
   where?: InputMaybe<Profile_Counters_Bool_Exp>;
 };
@@ -1159,8 +1161,8 @@ export type Subscription_RootProfile_CountersArgs = {
 
 export type Subscription_RootProfiles_ParamsArgs = {
   distinct_on?: InputMaybe<Array<Profiles_Params_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<Profiles_Params_Order_By>>;
   where?: InputMaybe<Profiles_Params_Bool_Exp>;
 };
@@ -1168,8 +1170,8 @@ export type Subscription_RootProfiles_ParamsArgs = {
 
 export type Subscription_RootUser_BlockArgs = {
   distinct_on?: InputMaybe<Array<User_Block_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<User_Block_Order_By>>;
   where?: InputMaybe<User_Block_Bool_Exp>;
 };
@@ -1177,8 +1179,8 @@ export type Subscription_RootUser_BlockArgs = {
 
 export type Subscription_RootUser_RelationshipArgs = {
   distinct_on?: InputMaybe<Array<User_Relationship_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<User_Relationship_Order_By>>;
   where?: InputMaybe<User_Relationship_Bool_Exp>;
 };
@@ -1186,23 +1188,23 @@ export type Subscription_RootUser_RelationshipArgs = {
 
 export type Subscription_RootUser_Relationship_AggregateArgs = {
   distinct_on?: InputMaybe<Array<User_Relationship_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  offset?: InputMaybe<Scalars['Int']['input']>;
   order_by?: InputMaybe<Array<User_Relationship_Order_By>>;
   where?: InputMaybe<User_Relationship_Bool_Exp>;
 };
 
 /** Boolean expression to compare columns of type "timestamp". All fields are combined with logical 'AND'. */
 export type Timestamp_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['timestamp']>;
-  _gt?: InputMaybe<Scalars['timestamp']>;
-  _gte?: InputMaybe<Scalars['timestamp']>;
-  _in?: InputMaybe<Array<Scalars['timestamp']>>;
-  _is_null?: InputMaybe<Scalars['Boolean']>;
-  _lt?: InputMaybe<Scalars['timestamp']>;
-  _lte?: InputMaybe<Scalars['timestamp']>;
-  _neq?: InputMaybe<Scalars['timestamp']>;
-  _nin?: InputMaybe<Array<Scalars['timestamp']>>;
+  _eq?: InputMaybe<Scalars['timestamp']['input']>;
+  _gt?: InputMaybe<Scalars['timestamp']['input']>;
+  _gte?: InputMaybe<Scalars['timestamp']['input']>;
+  _in?: InputMaybe<Array<Scalars['timestamp']['input']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']['input']>;
+  _lt?: InputMaybe<Scalars['timestamp']['input']>;
+  _lte?: InputMaybe<Scalars['timestamp']['input']>;
+  _neq?: InputMaybe<Scalars['timestamp']['input']>;
+  _nin?: InputMaybe<Array<Scalars['timestamp']['input']>>;
 };
 
 /** columns and relationships of "user_block" */
@@ -1210,12 +1212,12 @@ export type User_Block = {
   __typename?: 'user_block';
   /** An object relationship */
   blocked?: Maybe<Profile>;
-  blocked_address?: Maybe<Scalars['String']>;
+  blocked_address?: Maybe<Scalars['String']['output']>;
   /** An object relationship */
   blocker?: Maybe<Profile>;
-  blocker_address?: Maybe<Scalars['String']>;
-  reason?: Maybe<Scalars['String']>;
-  subspace_id: Scalars['bigint'];
+  blocker_address?: Maybe<Scalars['String']['output']>;
+  reason?: Maybe<Scalars['String']['output']>;
+  subspace_id: Scalars['bigint']['output'];
 };
 
 /** Boolean expression to filter rows from the table "user_block". All fields are combined with a logical 'AND'. */
@@ -1258,11 +1260,11 @@ export type User_Relationship = {
   __typename?: 'user_relationship';
   /** An object relationship */
   counterparty?: Maybe<Profile>;
-  counterparty_address: Scalars['String'];
+  counterparty_address: Scalars['String']['output'];
   /** An object relationship */
   creator?: Maybe<Profile>;
-  creator_address: Scalars['String'];
-  subspace_id: Scalars['bigint'];
+  creator_address: Scalars['String']['output'];
+  subspace_id: Scalars['bigint']['output'];
 };
 
 /** aggregated selection of "user_relationship" */
@@ -1276,7 +1278,7 @@ export type User_Relationship_Aggregate = {
 export type User_Relationship_Aggregate_Fields = {
   __typename?: 'user_relationship_aggregate_fields';
   avg?: Maybe<User_Relationship_Avg_Fields>;
-  count: Scalars['Int'];
+  count: Scalars['Int']['output'];
   max?: Maybe<User_Relationship_Max_Fields>;
   min?: Maybe<User_Relationship_Min_Fields>;
   stddev?: Maybe<User_Relationship_Stddev_Fields>;
@@ -1292,13 +1294,13 @@ export type User_Relationship_Aggregate_Fields = {
 /** aggregate fields of "user_relationship" */
 export type User_Relationship_Aggregate_FieldsCountArgs = {
   columns?: InputMaybe<Array<User_Relationship_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
+  distinct?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
 /** aggregate avg on columns */
 export type User_Relationship_Avg_Fields = {
   __typename?: 'user_relationship_avg_fields';
-  subspace_id?: Maybe<Scalars['Float']>;
+  subspace_id?: Maybe<Scalars['Float']['output']>;
 };
 
 /** Boolean expression to filter rows from the table "user_relationship". All fields are combined with a logical 'AND'. */
@@ -1316,17 +1318,17 @@ export type User_Relationship_Bool_Exp = {
 /** aggregate max on columns */
 export type User_Relationship_Max_Fields = {
   __typename?: 'user_relationship_max_fields';
-  counterparty_address?: Maybe<Scalars['String']>;
-  creator_address?: Maybe<Scalars['String']>;
-  subspace_id?: Maybe<Scalars['bigint']>;
+  counterparty_address?: Maybe<Scalars['String']['output']>;
+  creator_address?: Maybe<Scalars['String']['output']>;
+  subspace_id?: Maybe<Scalars['bigint']['output']>;
 };
 
 /** aggregate min on columns */
 export type User_Relationship_Min_Fields = {
   __typename?: 'user_relationship_min_fields';
-  counterparty_address?: Maybe<Scalars['String']>;
-  creator_address?: Maybe<Scalars['String']>;
-  subspace_id?: Maybe<Scalars['bigint']>;
+  counterparty_address?: Maybe<Scalars['String']['output']>;
+  creator_address?: Maybe<Scalars['String']['output']>;
+  subspace_id?: Maybe<Scalars['bigint']['output']>;
 };
 
 /** Ordering options when selecting data from "user_relationship". */
@@ -1351,61 +1353,61 @@ export enum User_Relationship_Select_Column {
 /** aggregate stddev on columns */
 export type User_Relationship_Stddev_Fields = {
   __typename?: 'user_relationship_stddev_fields';
-  subspace_id?: Maybe<Scalars['Float']>;
+  subspace_id?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate stddev_pop on columns */
 export type User_Relationship_Stddev_Pop_Fields = {
   __typename?: 'user_relationship_stddev_pop_fields';
-  subspace_id?: Maybe<Scalars['Float']>;
+  subspace_id?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate stddev_samp on columns */
 export type User_Relationship_Stddev_Samp_Fields = {
   __typename?: 'user_relationship_stddev_samp_fields';
-  subspace_id?: Maybe<Scalars['Float']>;
+  subspace_id?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate sum on columns */
 export type User_Relationship_Sum_Fields = {
   __typename?: 'user_relationship_sum_fields';
-  subspace_id?: Maybe<Scalars['bigint']>;
+  subspace_id?: Maybe<Scalars['bigint']['output']>;
 };
 
 /** aggregate var_pop on columns */
 export type User_Relationship_Var_Pop_Fields = {
   __typename?: 'user_relationship_var_pop_fields';
-  subspace_id?: Maybe<Scalars['Float']>;
+  subspace_id?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate var_samp on columns */
 export type User_Relationship_Var_Samp_Fields = {
   __typename?: 'user_relationship_var_samp_fields';
-  subspace_id?: Maybe<Scalars['Float']>;
+  subspace_id?: Maybe<Scalars['Float']['output']>;
 };
 
 /** aggregate variance on columns */
 export type User_Relationship_Variance_Fields = {
   __typename?: 'user_relationship_variance_fields';
-  subspace_id?: Maybe<Scalars['Float']>;
+  subspace_id?: Maybe<Scalars['Float']['output']>;
 };
 
 export type DesmosProfileQueryVariables = Exact<{
-  addresses?: InputMaybe<Array<Scalars['String']> | Scalars['String']>;
+  addresses?: InputMaybe<Array<Scalars['String']['input']> | Scalars['String']['input']>;
 }>;
 
 
 export type DesmosProfileQuery = { profile: Array<{ __typename?: 'profile', address: string, bio: string, dtag: string, nickname: string, profilePic: string, coverPic: string, creationTime: any, chainLinks: Array<{ __typename?: 'chain_link', creationTime: any, externalAddress: string, chainConfig: { __typename?: 'chain_link_chain_config', name: string } }>, applicationLinks: Array<{ __typename?: 'application_link', username: string, application: string, creationTime: any }> }> };
 
 export type DesmosProfileLinkQueryVariables = Exact<{
-  addresses?: InputMaybe<Array<Scalars['String']> | Scalars['String']>;
+  addresses?: InputMaybe<Array<Scalars['String']['input']> | Scalars['String']['input']>;
 }>;
 
 
 export type DesmosProfileLinkQuery = { profile: Array<{ __typename?: 'profile', address: string, bio: string, dtag: string, nickname: string, profilePic: string, coverPic: string, creationTime: any, chainLinks: Array<{ __typename?: 'chain_link', creationTime: any, externalAddress: string, chainConfig: { __typename?: 'chain_link_chain_config', name: string } }>, applicationLinks: Array<{ __typename?: 'application_link', username: string, application: string, creationTime: any }> }> };
 
 export type DesmosProfileDtagQueryVariables = Exact<{
-  dtag?: InputMaybe<Scalars['String']>;
+  dtag?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
@@ -1464,8 +1466,13 @@ export function useDesmosProfileLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<DesmosProfileQuery, DesmosProfileQueryVariables>(DesmosProfileDocument, options);
         }
+export function useDesmosProfileSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<DesmosProfileQuery, DesmosProfileQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<DesmosProfileQuery, DesmosProfileQueryVariables>(DesmosProfileDocument, options);
+        }
 export type DesmosProfileQueryHookResult = ReturnType<typeof useDesmosProfileQuery>;
 export type DesmosProfileLazyQueryHookResult = ReturnType<typeof useDesmosProfileLazyQuery>;
+export type DesmosProfileSuspenseQueryHookResult = ReturnType<typeof useDesmosProfileSuspenseQuery>;
 export type DesmosProfileQueryResult = Apollo.QueryResult<DesmosProfileQuery, DesmosProfileQueryVariables>;
 export const DesmosProfileLinkDocument = gql`
     query DesmosProfileLink($addresses: [String!]) {
@@ -1519,8 +1526,13 @@ export function useDesmosProfileLinkLazyQuery(baseOptions?: Apollo.LazyQueryHook
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<DesmosProfileLinkQuery, DesmosProfileLinkQueryVariables>(DesmosProfileLinkDocument, options);
         }
+export function useDesmosProfileLinkSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<DesmosProfileLinkQuery, DesmosProfileLinkQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<DesmosProfileLinkQuery, DesmosProfileLinkQueryVariables>(DesmosProfileLinkDocument, options);
+        }
 export type DesmosProfileLinkQueryHookResult = ReturnType<typeof useDesmosProfileLinkQuery>;
 export type DesmosProfileLinkLazyQueryHookResult = ReturnType<typeof useDesmosProfileLinkLazyQuery>;
+export type DesmosProfileLinkSuspenseQueryHookResult = ReturnType<typeof useDesmosProfileLinkSuspenseQuery>;
 export type DesmosProfileLinkQueryResult = Apollo.QueryResult<DesmosProfileLinkQuery, DesmosProfileLinkQueryVariables>;
 export const DesmosProfileDtagDocument = gql`
     query DesmosProfileDtag($dtag: String) {
@@ -1574,6 +1586,11 @@ export function useDesmosProfileDtagLazyQuery(baseOptions?: Apollo.LazyQueryHook
           const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<DesmosProfileDtagQuery, DesmosProfileDtagQueryVariables>(DesmosProfileDtagDocument, options);
         }
+export function useDesmosProfileDtagSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<DesmosProfileDtagQuery, DesmosProfileDtagQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<DesmosProfileDtagQuery, DesmosProfileDtagQueryVariables>(DesmosProfileDtagDocument, options);
+        }
 export type DesmosProfileDtagQueryHookResult = ReturnType<typeof useDesmosProfileDtagQuery>;
 export type DesmosProfileDtagLazyQueryHookResult = ReturnType<typeof useDesmosProfileDtagLazyQuery>;
+export type DesmosProfileDtagSuspenseQueryHookResult = ReturnType<typeof useDesmosProfileDtagSuspenseQuery>;
 export type DesmosProfileDtagQueryResult = Apollo.QueryResult<DesmosProfileDtagQuery, DesmosProfileDtagQueryVariables>;
