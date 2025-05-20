@@ -1,17 +1,13 @@
 import * as R from 'ramda';
 import { useState, useEffect, useCallback } from 'react';
 
-import { convertMsgsToModels } from '@/components/msg/utils';
 import {
-  useMessagesByTypesListenerSubscription,
-  MessagesByTypesListenerSubscription,
-  useMessagesByTypesQuery, useTransactionsQuery,
-} from '@/graphql/types/general_types';
+  useTransactionsQuery,
 
-import {
   TransactionsListenerSubscription,
   useTransactionsListenerSubscription,
 } from '@/graphql/types/general_types';
+
 
 
 import type { TransactionsState } from '@/screens/transactions/types';
@@ -141,13 +137,13 @@ export const useTransactions = () => {
 
         onCompleted: (data) => {
           const itemsLength = data.transactions.length;
-          const newItems = uniqueAndSort([...state.items, ...(formatTransactions(data) ?? [])]);
+          const newItems = uniqueAndSort([...state.items, ...(formatTransactions(data as TransactionsListenerSubscription) ?? [])]);
           handleSetState((prevState) => ({
             ...prevState,
             loading: true,
             items: newItems,
             hasNextPage: itemsLength === 51,
-            isNextPageLoading: true,
+            isNextPageLoading: false,
           }));
         },
       }
@@ -207,13 +203,13 @@ export const useTransactions = () => {
         },
       })
       .then(({ data }) => {
-        const itemsLength = data?.messagesByTypes.length;
-        const newItems = uniqueAndSort([...state.items, ...(formatTransactions(data) ?? [])]);
+        const itemsLength = data?.transactions.length;
+        const newItems = uniqueAndSort([...state.items, ...(formatTransactions(data as TransactionsListenerSubscription) ?? [])]);
         handleSetState((prevState) => ({
           ...prevState,
           items: newItems,
-          isNextPageLoading: true,
-          hasNextPage: itemsLength === 7,
+          isNextPageLoading: false,
+          hasNextPage: itemsLength === LIMIT,
         }));
       });
   };

@@ -8,7 +8,7 @@
     "ts-check": "pnpify tsc --noemit",
     "lint": "next lint",
     "test": "pnpify jest --passWithNoTests --ci --no-watchman --runInBand",
-    "graphql:codegen": "pnpify graphql-codegen"
+    "graphql:codegen": "graphql-codegen --config ./codegen.yml"
   },
   "dependencies": {
     "@apollo/client": "^3.7.14",
@@ -72,14 +72,15 @@
   "devDependencies": {
     "@emotion/cache": "^11.11.0",
     "@emotion/jest": "^11.11.0",
-    "@graphql-codegen/cli": "^3.3.1",
-    "@graphql-codegen/client-preset": "^3.0.1",
-    "@graphql-codegen/fragment-matcher": "^4.0.1",
-    "@graphql-codegen/typescript": "^3.0.4",
-    "@graphql-codegen/typescript-operations": "^3.0.4",
-    "@graphql-codegen/typescript-react-apollo": "^3.3.7",
-    "@graphql-tools/mock": "^8.7.20",
-    "@graphql-tools/schema": "^9.0.19",
+    "@graphql-codegen/cli": "^5.0.6",
+    "@graphql-codegen/client-preset": "^4.8.1",
+    "@graphql-codegen/fragment-matcher": "^5.1.0",
+    "@graphql-codegen/typescript": "^4.1.6",
+    "@graphql-codegen/typescript-compatibility": "^2.1.5",
+    "@graphql-codegen/typescript-operations": "^4.6.1",
+    "@graphql-codegen/typescript-react-apollo": "^4.3.2",
+    "@graphql-tools/mock": "^9.0.22",
+    "@graphql-tools/schema": "^10.0.23",
     "@jest/globals": "^29.5.0",
     "@next/eslint-plugin-next": "^13.4.1",
     "@svgr/webpack": "^7.0.0",

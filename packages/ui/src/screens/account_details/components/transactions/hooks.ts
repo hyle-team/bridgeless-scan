@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { convertMsgsToModels } from '@/components/msg/utils';
 import {
   GetMessagesByAddressQuery,
-  useGetMessagesByAddressQuery,
+  useGetTransactionsByAddressRegexQuery,
 } from '@/graphql/types/general_types';
 import type { TransactionState } from '@/screens/account_details/components/transactions/types';
 import { convertMsgType } from '@/utils/convert_msg_type';
@@ -13,6 +13,35 @@ import { readFilter } from '@/recoil/transactions_filter';
 
 const LIMIT = 50;
 
+const getAddressPubKeyRegex = async (address: string) => {
+  const response = await fetch(`https://rpc-api.node0.mainnet.bridgeless.com/cosmos/auth/v1beta1/accounts/${address}`)
+
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+
+  const data = await response.json() as {
+    "account": {
+      "@type": string,
+      "base_account": {
+        "address": string,
+        "pub_key": {
+          "@type": string,
+          "key": string
+        },
+        "account_number": string,
+        "sequence": string
+      },
+      "code_hash": string
+    }
+  };
+
+  const escapedString = data.account.base_account.pub_key.key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const regex = new RegExp(escapedString).toString()
+  return regex.substring(1, regex.length - 1)
+}
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const formatTransactions = (data: GetMessagesByAddressQuery): Transactions[] => {
   let formattedData = data.messagesByAddress;
   if (data.messagesByAddress.length === 51) {
@@ -55,11 +84,18 @@ export function useTransactions() {
   const msgTypes = useRecoilValue(readFilter);
   const isFirst = useRef(true);
 
+  const [addressRegex, setAddressRegex] = useState<string>();
+
   // reset state when address changes
   useEffect(() => {
+    const loadAddressRegex = async () => {
+      setAddressRegex(await getAddressPubKeyRegex(router?.query?.address as string));
+    }
+
     if (isFirst.current) {
       isFirst.current = false;
     } else {
+      loadAddressRegex();
       setState((prevState) => ({
         ...prevState,
         data: [],
@@ -77,18 +113,19 @@ export function useTransactions() {
     });
   };
 
-  const { fetchMore } = useGetMessagesByAddressQuery({
+  const { fetchMore } = useGetTransactionsByAddressRegexQuery({
     variables: {
       limit: LIMIT + 1, // to check if more exist
       offset: 0,
-      address: `{${router?.query?.address ?? ''}}`,
-      types: msgTypes,
+      // address: `{${router?.query?.address ?? ''}}`,
+      _regex: addressRegex,
+      // types: msgTypes,
     },
     onCompleted: (data) => {
-      const itemsLength = data.messagesByAddress.length;
-      const newItems = R.uniq([...state.data, ...formatTransactions(data)]);
+      const itemsLength = data.transaction.length;
+      const newItems = R.uniq([...state.data, ...data.transaction]);
       const stateChange: TransactionState = {
-        data: newItems,
+        data: newItems as Transactions[],
         hasNextPage: itemsLength === 51,
         isNextPageLoading: false,
         offsetCount: state.offsetCount + LIMIT,
@@ -107,10 +144,10 @@ export function useTransactions() {
         limit: LIMIT + 1,
       },
     }).then(({ data }) => {
-      const itemsLength = data.messagesByAddress.length;
-      const newItems = R.uniq([...state.data, ...formatTransactions(data)]);
+      const itemsLength = data.transaction.length;
+      const newItems = R.uniq([...state.data, ...data.transaction]);
       const stateChange: TransactionState = {
-        data: newItems,
+        data: newItems as Transactions[],
         hasNextPage: itemsLength === 51,
         isNextPageLoading: false,
         offsetCount: state.offsetCount + LIMIT,
