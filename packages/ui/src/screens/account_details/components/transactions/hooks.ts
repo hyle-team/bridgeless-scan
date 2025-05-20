@@ -10,11 +10,12 @@ import type { TransactionState } from '@/screens/account_details/components/tran
 import { convertMsgType } from '@/utils/convert_msg_type';
 import { useRecoilValue } from 'recoil';
 import { readFilter } from '@/recoil/transactions_filter';
+import chainConfig from '@/chainConfig';
 
 const LIMIT = 50;
 
-const getAddressPubKeyRegex = async (address: string) => {
-  const response = await fetch(`https://rpc-api.node0.mainnet.bridgeless.com/cosmos/auth/v1beta1/accounts/${address}`)
+export const getAddressPubKeyRegex = async (address: string) => {
+  const response = await fetch(`${chainConfig().restApiUrl}/accounts/${address}`)
 
   if (!response.ok) {
     throw new Error('Network response was not ok');
@@ -73,7 +74,7 @@ const formatTransactions = (data: GetMessagesByAddressQuery): Transactions[] => 
   });
 };
 
-export function useTransactions() {
+export function useTransactions(addressRegex: string) {
   const router = useRouter();
   const [state, setState] = useState<TransactionState>({
     data: [],
@@ -84,18 +85,12 @@ export function useTransactions() {
   const msgTypes = useRecoilValue(readFilter);
   const isFirst = useRef(true);
 
-  const [addressRegex, setAddressRegex] = useState<string>();
-
   // reset state when address changes
   useEffect(() => {
-    const loadAddressRegex = async () => {
-      setAddressRegex(await getAddressPubKeyRegex(router?.query?.address as string));
-    }
 
     if (isFirst.current) {
       isFirst.current = false;
     } else {
-      loadAddressRegex();
       setState((prevState) => ({
         ...prevState,
         data: [],
