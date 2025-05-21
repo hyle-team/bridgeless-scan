@@ -21,11 +21,14 @@ function chainConfig() {
     ''
   );
 
+  const restApiUrl = process.env.NEXT_PUBLIC_REST_API_URL || 'https://rpc-api.node0.mainnet.bridgeless.com/cosmos/auth/v1beta1';
+
   /* Merging the settings and chain objects. */
   return {
     ...settings,
     basePath,
     ...chain,
+    restApiUrl,
   } as unknown as ChainConfig;
 }
 

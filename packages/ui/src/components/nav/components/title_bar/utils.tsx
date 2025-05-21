@@ -5,7 +5,7 @@ import { formatNumber } from '@/utils/format_token';
 export const formatMarket = (data: AtomState) => {
   const exludedItems = [null, 0];
   const marketCap = exludedItems.includes(data.marketCap)
-    ? 'N/A'
+    ? '0'
     : `$${formatNumber(data.marketCap?.toString() ?? '', 2)}`;
 
   return [

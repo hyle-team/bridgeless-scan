@@ -145,4 +145,5 @@ export interface ChainConfig extends ChainSettings {
     light: PaletteSettings;
   };
   keplr: string | undefined;
+  restApiUrl: string;
 }
